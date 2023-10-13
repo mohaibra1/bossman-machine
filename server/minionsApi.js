@@ -1,6 +1,11 @@
 const express = require('express');
 const minionsRouter = express.Router();
 const morgan = require('morgan')
+const cors = require('cors')
+
+minionsRouter.use(cors({
+    origin: '*'
+}))
 
 //import database functions
 const { createMeeting,
@@ -40,13 +45,13 @@ minionsRouter.get('/:minionId', (req, res, next) => {
 
 //PUT /api/minions/:minionId to update a single minion by id.
 minionsRouter.put('/:minionId', (req, res, next) => {
-    res.send(updateInstanceInDatabase('minions', req.body))
+    res.send(createMeeting('minions'))
 })
 
 //DELETE /api/minions/:minionId to delete a single minion by id.
 minionsRouter.delete('/:minionId', (req, res, next) => {
-    const minionDeleted = deleteFromDatabasebyId('minions', req.params.minionId);
-    if(minionDeleted){
+    const isDeleted = deleteFromDatabasebyId('minions', req.params.minionId);
+    if(isDeleted){
         res.status(204).send('Minion Deleted Successful.')
     }else{
         res.status(404).send('Nothing to delete')
