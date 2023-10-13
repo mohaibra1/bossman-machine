@@ -7,7 +7,15 @@ module.exports = app;
 
 //minions router
 const minionsRouter  = require('./server/minionsApi.js')
-app.use('/api/minions', minionsRouter);
+app.use('/api/minions', minionsRouter)
+
+//ideas router
+const ideasRouter = require('./server/ideasApi.js')
+app.use('/api/ideas', ideasRouter)
+
+//meetings router
+const meetingsRouter = require('./server/meetingsApi.js')
+app.use('/api/meetings', meetingsRouter)
 
 /* Do not change the following line! It is required for testing and allowing
 *  the frontend application to interact as planned with the api server
