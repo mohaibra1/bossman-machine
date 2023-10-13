@@ -9,13 +9,12 @@ ideasRouter.use(cors({
 }))
 
 //import database functions
-const { createMeeting,
+const {
     getAllFromDatabase,
     getFromDatabaseById,
     addToDatabase,
     updateInstanceInDatabase,
-    deleteFromDatabasebyId,
-    deleteAllFromDatabase, } = require('./db.js')
+    deleteFromDatabasebyId, } = require('./db.js')
 
 
 // Logging Middleware

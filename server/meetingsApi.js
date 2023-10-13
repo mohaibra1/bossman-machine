@@ -11,11 +11,8 @@ meetingsRouter.use(cors({
 //import database functions
 const { createMeeting,
     getAllFromDatabase,
-    getFromDatabaseById,
-    addToDatabase,
-    updateInstanceInDatabase,
     deleteFromDatabasebyId,
-    deleteAllFromDatabase, } = require('./db.js')
+ } = require('./db.js')
 
 
 //body-parser
