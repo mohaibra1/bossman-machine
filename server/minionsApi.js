@@ -2,19 +2,20 @@ const express = require('express');
 const minionsRouter = express.Router();
 const morgan = require('morgan')
 const cors = require('cors')
+const workRouter = require('./workApi') 
 
 minionsRouter.use(cors({
     origin: '*'
 }))
 
 //import database functions
-const { createMeeting,
+const {
     getAllFromDatabase,
     getFromDatabaseById,
     addToDatabase,
     updateInstanceInDatabase,
     deleteFromDatabasebyId,
-    deleteAllFromDatabase, } = require('./db.js');
+     } = require('./db.js');
 const bodyParser = require('body-parser');
 
 //body-parser
@@ -22,6 +23,10 @@ minionsRouter.use(bodyParser.json())
 
 // Logging Middleware
 minionsRouter.use(morgan('dev'));  
+
+//nest work router api
+//work router
+minionsRouter.use('/:minionId/work', workRouter)
 
 //GET /api/minions to get an array of all minions.
 minionsRouter.get('/', (req, res, next) => {
@@ -43,9 +48,10 @@ minionsRouter.get('/:minionId', (req, res, next) => {
     res.send(getFromDatabaseById('minions', req.params.minionId))
 })
 
+
 //PUT /api/minions/:minionId to update a single minion by id.
 minionsRouter.put('/:minionId', (req, res, next) => {
-    res.send(createMeeting('minions'))
+    res.send(updateInstanceInDatabase('minions', req.body))
 })
 
 //DELETE /api/minions/:minionId to delete a single minion by id.

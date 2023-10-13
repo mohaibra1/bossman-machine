@@ -17,6 +17,7 @@ app.use('/api/ideas', ideasRouter)
 const meetingsRouter = require('./server/meetingsApi.js')
 app.use('/api/meetings', meetingsRouter)
 
+
 /* Do not change the following line! It is required for testing and allowing
 *  the frontend application to interact as planned with the api server
 */
